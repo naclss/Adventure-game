@@ -20,7 +20,7 @@ timer = pg.transform.scale(timer,(100,100))
 
 shet_kill =pg.image.load('unnamed.png')
 shet_kill = pg.transform.scale(shet_kill,(100,100))
-char_image = pg.image.load('009d96b7abbf7b3a94ce41a4f915aa84.png')
+char_image = pg.image.load('unnamed2.png')
 char_image = pg.transform.scale(char_image, (100, 100))
 zombi = pg.image.load('unnamed.png')
 zombi = pg.transform.scale(zombi,(150,150))
@@ -36,6 +36,7 @@ right_image = pg.transform.flip(char_image.copy(), 1, 0)
 down_image = pg.transform.flip(char_image.copy(), 0, 1)
 up_image = pg.transform.flip(char_image.copy(), 0, 1)
 
+left_image_zombi = pg.transform.flip(zombi.copy(), 0, 1)
 ball_patron = 5
 
 f1 = pg.font.SysFont('Arial Black', 50)
@@ -92,15 +93,6 @@ def check_move():
         up_image = pg.transform.flip(char_image.copy(), 0, 1)
         balls_gun = 1
 
-    if keys[pg.K_1]:
-        char_image = pg.image.load('009d96b7abbf7b3a94ce41a4f915aa84.png')
-        char_image = pg.transform.scale(char_image, (100, 100))
-        left_image = char_image.copy()
-        right_image = pg.transform.flip(char_image.copy(), 1, 0)
-        down_image = pg.transform.flip(char_image.copy(), 0, 1)
-        up_image = pg.transform.flip(char_image.copy(), 0, 1)
-        balls_gun = 0
-
     if keys[pg.K_w] and char_rect.top > 0:
         char_rect.y -= 2
 
@@ -137,11 +129,21 @@ def check_move():
     if char_image == left_image:
         balls_dwizh = 0
 
-    if zombi_rect.centerx == char_rect.centerx:
-        zombi_rect.move_ip(3,0)
-    if zombi_rect.centery == char_rect.centery:
-        zombi_rect.move_ip(0,3)
+    if zombi_rect.centerx < char_rect.centerx:
+        zombi = left_image_zombi
+        zombi_rect.move_ip(1,0)
 
+    if zombi_rect.centery < char_rect.centery:
+
+        zombi_rect.move_ip(0,1)
+
+    if zombi_rect.centerx > char_rect.centerx:
+        zombi = left_image_zombi
+        zombi_rect.move_ip(-1,0)
+
+    if zombi_rect.centery > char_rect.centery:
+
+        zombi_rect.move_ip(0,-1)
     if ball_patron > 0:
         if balls_gun == 1 and keys[pg.K_f]:
             patron_rect = patron.get_rect(center=(char_rect.centerx - 1,char_rect.centery + 19))
