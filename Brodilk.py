@@ -14,18 +14,22 @@ WIDHT = 1090
 HEIGHT = 738
 screen = pg.display.set_mode((WIDHT, HEIGHT))
 back_image = pg.image.load('kHPCvZKZasEtnzIAgJKzk4IvUCysTNGJmtGoxEEY3NlgnwUEg8xXvEs17w25SO4M7nhGftOYYxdlwiVbpPUqjE0A.jpg')
-back_rect = back_image.get_rect()
+back_rect = back_image.get_rect() #карта
 timer = pg.image.load('kHPCvZKZasEtnzIAgJKzk4IvUCysTNGJmtGoxEEY3NlgnwUEg8xXvEs17w25SO4M7nhGftOYYxdlwiVbpPUqjE0A.jpg')
-timer = pg.transform.scale(timer,(100,100))
+timer = pg.transform.scale(timer,(100,100)) #это даже я не знаю что-чакое но надо
 
 shet_kill =pg.image.load('unnamed.png')
-shet_kill = pg.transform.scale(shet_kill,(100,100))
+shet_kill = pg.transform.scale(shet_kill,(100,100)) #Это тоже я не знаю что
 char_image = pg.image.load('unnamed2.png')
-char_image = pg.transform.scale(char_image, (100, 100))
+char_image = pg.transform.scale(char_image, (100, 100)) #Персонаж
 zombi = pg.image.load('unnamed.png')
-zombi = pg.transform.scale(zombi,(150,150))
+zombi = pg.transform.scale(zombi,(150,150)) #Зомби
 patron = pg.image.load('02f0285554bb7a6.png')
-patron = pg.transform.scale(patron,(20,20))
+patron = pg.transform.scale(patron,(20,20)) #Патрон
+patron2 = pg.image.load('02f0285554bb7a6 (1).png')
+patron2 = pg.transform.scale(patron2,(20,20)) #Патрон для дробовика
+patron3 = pg.image.load('02f0285554bb7a6 (2).png')
+patron3 = pg.transform.scale(patron3,(20,20)) #Патрон для дробовика
 char_rect = char_image.get_rect()
 schet_kill_rect = shet_kill.get_rect(center=(855,690))
 timer_rect = timer.get_rect(center=(2000,2000))
@@ -37,7 +41,7 @@ down_image = pg.transform.flip(char_image.copy(), 0, 1)
 up_image = pg.transform.flip(char_image.copy(), 0, 1)
 
 left_image_zombi = pg.transform.flip(zombi.copy(), 0, 1)
-ball_patron = 5
+ball_patron = 5 #кол-во патрон
 
 f1 = pg.font.SysFont('Arial Black', 50)
 text = f1.render(str(0), True, (255, 255,255))
@@ -45,10 +49,10 @@ f2 = pg.font.SysFont('Jokerman', 50)
 text2 = f2.render(str(0), True, (255, 0,50))
 speed = 2
 
-balls_gun = 0
-balls_dwizh = 0
-zombi_hp = 0
-balls_zomb = 0
+balls_gun = 0 #это надо но долго обьяснять
+balls_dwizh = 0#это надо но долго обьяснять
+zombi_hp = 0#это надо но долго обьяснять
+balls_zomb = 0#это надо но долго обьяснять
 def check_events():
     for event in pg.event.get():
         if event.type == pg.QUIT:
@@ -144,6 +148,8 @@ def check_move():
     if zombi_rect.centery > char_rect.centery:
 
         zombi_rect.move_ip(0,-1)
+
+
     if ball_patron > 0:
         if balls_gun == 1 and keys[pg.K_f]:
             patron_rect = patron.get_rect(center=(char_rect.centerx - 1,char_rect.centery + 19))
